@@ -1,3 +1,14 @@
-from django.shortcuts import render
+from rest_framework.viewsets import ModelViewSet
 
-# Create your views here.
+from habits.models import Habit, EnjoyableHabit
+from habits.serialaizers import HabitSerializer, EnjoyableHabitSerializer
+
+
+class EnjoyableHabitViewSet(ModelViewSet):
+    queryset = EnjoyableHabit.objects.all()
+    serializer_class = EnjoyableHabitSerializer
+
+
+class HabitViewSet(ModelViewSet):
+    queryset = Habit.objects.all()
+    serializer_class = HabitSerializer

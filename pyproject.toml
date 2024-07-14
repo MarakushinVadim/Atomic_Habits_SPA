@@ -21,6 +21,7 @@ redis = "^5.0.7"
 billiard = "^4.2.0"
 celery = "^5.4.0"
 django-celery-beat = "^2.6.0"
+setuptools = "^70.3.0"
 
 
 [build-system]
