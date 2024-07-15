@@ -16,7 +16,7 @@ class EnjoyableHabit(models.Model):
         help_text="введите описание приятной привычки",
     )
     user = models.ForeignKey(
-        User, on_delete=models.CASCADE, verbose_name="Создатель привычки"
+        User, on_delete=models.CASCADE, verbose_name="Создатель привычки", **NULLABLE
     )
 
     def __str__(self):
@@ -46,7 +46,7 @@ class Habit(models.Model):
         verbose_name="Описание привычки", help_text="введите описание привычки"
     )
     user = models.ForeignKey(
-        User, on_delete=models.CASCADE, verbose_name="Создатель привычки"
+        User, on_delete=models.CASCADE, verbose_name="Создатель привычки", **NULLABLE
     )
     place = models.CharField(
         max_length=255, verbose_name="место", help_text="введите место привычки"
