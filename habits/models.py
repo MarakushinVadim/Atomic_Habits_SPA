@@ -5,28 +5,6 @@ from users.models import User
 NULLABLE = {"null": True, "blank": True}
 
 
-class EnjoyableHabit(models.Model):
-    name = models.CharField(
-        max_length=255,
-        verbose_name="Название приятной привычки",
-        help_text="введите название приятной привычки",
-    )
-    description = models.TextField(
-        verbose_name="Описание приятной привычки",
-        help_text="введите описание приятной привычки",
-    )
-    user = models.ForeignKey(
-        User, on_delete=models.CASCADE, verbose_name="Создатель привычки", **NULLABLE
-    )
-
-    def __str__(self):
-        return self.name
-
-    class Meta:
-        verbose_name = "Приятная привычка"
-        verbose_name_plural = "Приятная привычки"
-
-
 class Habit(models.Model):
     class FrequencyChoices(models.TextChoices):
         DAILY = "daily", "Ежедневно"
@@ -63,12 +41,7 @@ class Habit(models.Model):
         verbose_name="Действие привычки",
         help_text="введите действие привычки",
     )
-    nice_habit = models.ForeignKey(
-        EnjoyableHabit,
-        on_delete=models.CASCADE,
-        verbose_name="Приятная привычка",
-        **NULLABLE,
-    )
+    is_nice_habit = models.BooleanField(default=False, verbose_name="Хорошая привычка")
     reward = models.CharField(
         max_length=255, verbose_name="Награда за выполнение привычки", **NULLABLE
     )
