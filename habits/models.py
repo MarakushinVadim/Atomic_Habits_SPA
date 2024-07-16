@@ -1,3 +1,5 @@
+from datetime import timedelta
+
 from django.db import models
 
 from users.models import User
@@ -45,9 +47,11 @@ class Habit(models.Model):
     reward = models.CharField(
         max_length=255, verbose_name="Награда за выполнение привычки", **NULLABLE
     )
-    time_spent = models.DurationField(
-        verbose_name="Время затрачиваемое на привычку", **NULLABLE
-    )
+    associated_habit = models.ForeignKey("self", on_delete=models.CASCADE, verbose_name="Связанная привычка",
+                                         **NULLABLE)
+    time_spent = models.DurationField(default=timedelta(seconds=120),
+                                      verbose_name="Время затрачиваемое на привычку"
+                                      )
     is_public = models.BooleanField(default=False, verbose_name="Публичная привычка")
 
     def __str__(self):

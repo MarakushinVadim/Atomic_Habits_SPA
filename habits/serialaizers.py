@@ -1,11 +1,18 @@
 from rest_framework import serializers
 
 from habits.models import Habit
+from habits.validators import NotTwiceRewardValidator, NoRewardNiceHabitValidator, NoForeignHabitValidator, \
+    DurationValidator
 
 
 class HabitSerializer(serializers.ModelSerializer):
-    # nice_habit, reward = serializers.CharField(validators=[validate_habit])
-
     class Meta:
         model = Habit
         fields = "__all__"
+
+        validators = [
+            NotTwiceRewardValidator("associated_habit", "reward"),
+            NoRewardNiceHabitValidator("is_nice_habit", "reward", "associated_habit"),
+            NoForeignHabitValidator("associated_habit"),
+            DurationValidator("time_spent"),
+        ]
