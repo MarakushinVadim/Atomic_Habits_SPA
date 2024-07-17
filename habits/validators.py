@@ -5,16 +5,17 @@ from rest_framework.serializers import ValidationError
 
 class NotTwiceRewardValidator:
 
-    def __init__(self, value1, value2):
+    def __init__(self, value1, value2, value3):
         self.value1 = value1
         self.value2 = value2
+        self.value3 = value3
 
     def __call__(self, habit):
         if habit.get("associated_habit") and habit.get("reward"):
             raise ValidationError(
                 "Необходимо выбрать или только приятную привычку, или только награду"
             )
-        if not habit.get("associated_habit") and not habit.get("reward"):
+        if not habit.get("associated_habit") and not habit.get("reward") and not habit.get("is_nice_habit"):
             raise ValidationError(
                 "Необходимо выбрать награду"
             )
