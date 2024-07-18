@@ -1,5 +1,7 @@
+import datetime
 from datetime import timedelta
 
+import django.utils.timezone
 from django.db import models
 
 from users.models import User
@@ -53,6 +55,7 @@ class Habit(models.Model):
                                       verbose_name="Время затрачиваемое на привычку"
                                       )
     is_public = models.BooleanField(default=False, verbose_name="Публичная привычка")
+    start_date = models.DateField(default=django.utils.timezone.localdate(), verbose_name='Дата выполнения')
 
     def __str__(self):
         return f"Я буду {self.action} в {self.start_time} в {self.place}"
