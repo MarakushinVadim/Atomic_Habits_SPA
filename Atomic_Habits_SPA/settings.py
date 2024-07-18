@@ -167,3 +167,6 @@ REST_FRAMEWORK = {
         "rest_framework_simplejwt.authentication.JWTAuthentication",
     ),
 }
+
+TG_URL = os.getenv("TG_URL")
+BOT_TOKEN = os.getenv("BOT_TOKEN")
