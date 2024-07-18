@@ -170,3 +170,10 @@ REST_FRAMEWORK = {
 
 TG_URL = os.getenv("TG_URL")
 BOT_TOKEN = os.getenv("BOT_TOKEN")
+
+CELERY_BEAT_SCHEDULE = {
+    'send-reminder': {
+        'task': 'habits.tasks.send_reminder',  # Путь к задаче
+        'schedule': timedelta(minutes=1),  # Расписание выполнения задачи (например, каждую минуту)
+    },
+}
