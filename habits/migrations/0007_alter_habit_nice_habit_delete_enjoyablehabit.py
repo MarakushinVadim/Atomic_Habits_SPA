@@ -13,7 +13,7 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name="habit",
             name="nice_habit",
-            field=models.CharField(max_length=10, verbose_name='Приятная привычка'),
+            field=models.CharField(max_length=10, verbose_name="Приятная привычка"),
         ),
         migrations.DeleteModel(
             name="EnjoyableHabit",

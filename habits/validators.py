@@ -15,10 +15,12 @@ class NotTwiceRewardValidator:
             raise ValidationError(
                 "Необходимо выбрать или только приятную привычку, или только награду"
             )
-        if not habit.get("associated_habit") and not habit.get("reward") and not habit.get("is_nice_habit"):
-            raise ValidationError(
-                "Необходимо выбрать награду"
-            )
+        if (
+            not habit.get("associated_habit")
+            and not habit.get("reward")
+            and not habit.get("is_nice_habit")
+        ):
+            raise ValidationError("Необходимо выбрать награду")
 
 
 class NoRewardNiceHabitValidator:
@@ -30,9 +32,7 @@ class NoRewardNiceHabitValidator:
     def __call__(self, habit):
         if habit.get("is_nice_habit"):
             if habit.get("reward"):
-                raise ValidationError(
-                    "У приятной привычки не может быть награды"
-                )
+                raise ValidationError("У приятной привычки не может быть награды")
             if habit.get("associated_habit"):
                 raise ValidationError(
                     "У приятной привычки не может быть связанной привычки"
@@ -48,9 +48,7 @@ class NoForeignHabitValidator:
         associated_habit = habit.get("associated_habit")
         if associated_habit:
             if not associated_habit.is_nice_habit:
-                raise ValidationError(
-                    "Связанная привычка должна быть приятной"
-                )
+                raise ValidationError("Связанная привычка должна быть приятной")
 
 
 class DurationValidator:

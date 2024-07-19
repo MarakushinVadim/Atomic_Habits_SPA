@@ -25,11 +25,15 @@ class HabitViewSet(ModelViewSet):
         return self.get_paginated_response(serializer.data)
 
     def get_permissions(self):
-        if self.action == 'create':
+        if self.action == "create":
             self.permission_classes = (IsAuthenticated,)
-        elif self.action == 'update' or self.action == 'partial_update' or self.action == 'destroy':
+        elif (
+            self.action == "update"
+            or self.action == "partial_update"
+            or self.action == "destroy"
+        ):
             self.permission_classes = (IsOwner,)
-        elif self.action == 'list' or self.action == 'retrieve':
+        elif self.action == "list" or self.action == "retrieve":
             self.permission_classes = (IsOwner,)
         return super().get_permissions()
 

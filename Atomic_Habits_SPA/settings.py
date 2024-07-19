@@ -43,13 +43,12 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-
     "rest_framework",
     "django_filters",
     "rest_framework_simplejwt",
     "django_celery_beat",
     "drf_yasg",
-
+    "corsheaders",
     "users",
     "habits",
 ]
@@ -62,6 +61,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "corsheaders.middleware.CorsMiddleware",
 ]
 
 ROOT_URLCONF = "Atomic_Habits_SPA.urls"
@@ -172,8 +172,22 @@ TG_URL = os.getenv("TG_URL")
 BOT_TOKEN = os.getenv("BOT_TOKEN")
 
 CELERY_BEAT_SCHEDULE = {
-    'send-reminder': {
-        'task': 'habits.tasks.send_reminder',  # Путь к задаче
-        'schedule': timedelta(minutes=1),  # Расписание выполнения задачи (например, каждую минуту)
+    "send-reminder": {
+        "task": "habits.tasks.send_reminder",  # Путь к задаче
+        "schedule": timedelta(
+            minutes=1
+        ),  # Расписание выполнения задачи (например, каждую минуту)
     },
 }
+
+CORS_ALLOWED_ORIGINS = [
+    '<http://localhost:8000>',  # Замените на адрес вашего фронтенд-сервера
+    "https://read-and-write.example.com",
+]
+
+CSRF_TRUSTED_ORIGINS = [
+    "https://read-and-write.example.com", #  Замените на адрес вашего фронтенд-сервера
+    # и добавьте адрес бэкенд-сервера
+]
+
+CORS_ALLOW_ALL_ORIGINS = False

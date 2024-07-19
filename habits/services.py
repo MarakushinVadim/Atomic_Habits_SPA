@@ -1,7 +1,8 @@
 from datetime import timedelta
+
 import requests
 
-from Atomic_Habits_SPA.settings import TG_URL, BOT_TOKEN
+from Atomic_Habits_SPA.settings import BOT_TOKEN, TG_URL
 
 
 def create_timedelta(frequency):
@@ -23,7 +24,7 @@ def create_timedelta(frequency):
 
 def send_tg_message(text, chat_id):
     params = {
-        'text': text,
-        'chat_id': chat_id,
+        "text": text,
+        "chat_id": chat_id,
     }
-    requests.get(f'{TG_URL}{BOT_TOKEN}/sendMessage', params=params)
+    requests.get(f"{TG_URL}{BOT_TOKEN}/sendMessage", params=params)
