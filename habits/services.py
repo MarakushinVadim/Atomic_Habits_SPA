@@ -6,6 +6,7 @@ from Atomic_Habits_SPA.settings import BOT_TOKEN, TG_URL
 
 
 def create_timedelta(frequency):
+    """Функция создания timedelta, для периодичности привычки"""
     if frequency == "daily":
         return timedelta(days=1)
     elif frequency == "every_two_days":
@@ -23,6 +24,7 @@ def create_timedelta(frequency):
 
 
 def send_tg_message(text, chat_id):
+    """Функция отправки сообщения в Telegram"""
     params = {
         "text": text,
         "chat_id": chat_id,

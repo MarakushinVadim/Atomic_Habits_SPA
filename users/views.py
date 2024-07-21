@@ -8,6 +8,8 @@ from users.serializers import UserSerializer
 
 
 class UserCreateAPIView(CreateAPIView):
+    """Контроллер для создания нового пользователя"""
+
     serializer_class = UserSerializer
     queryset = User.objects.all()
     permission_classes = (AllowAny,)
@@ -19,20 +21,28 @@ class UserCreateAPIView(CreateAPIView):
 
 
 class UserListAPIView(ListAPIView):
+    """Контроллер для получения списка всех пользователей"""
+
     serializer_class = UserSerializer
     queryset = User.objects.all()
 
 
 class UserRetrieveAPIView(RetrieveAPIView):
+    """Контроллер для получения информации о конкретном пользователе"""
+
     serializer_class = UserSerializer
     queryset = User.objects.all()
 
 
 class UserUpdateAPIView(UpdateAPIView):
+    """Контроллер для изменения информации о конкретном пользователе"""
+
     serializer_class = UserSerializer
     queryset = User.objects.all()
 
 
 class UserDestroyAPIView(DestroyAPIView):
+    """Контроллер для удаления конкретного пользователя"""
+
     serializer_class = UserSerializer
     queryset = User.objects.all()

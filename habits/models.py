@@ -24,18 +24,13 @@ class Habit(models.Model):
         help_text="введите название привычки",
     )
     description = models.TextField(
-        verbose_name="Описание привычки",
-        help_text="введите описание привычки"
+        verbose_name="Описание привычки", help_text="введите описание привычки"
     )
     user = models.ForeignKey(
-        User, on_delete=models.CASCADE,
-        verbose_name="Создатель привычки",
-        **NULLABLE
+        User, on_delete=models.CASCADE, verbose_name="Создатель привычки", **NULLABLE
     )
     place = models.CharField(
-        max_length=255,
-        verbose_name="место",
-        help_text="введите место привычки"
+        max_length=255, verbose_name="место", help_text="введите место привычки"
     )
     frequency = models.CharField(
         max_length=16,
@@ -47,32 +42,21 @@ class Habit(models.Model):
     action = models.CharField(
         max_length=100,
         verbose_name="Действие привычки",
-        help_text="введите действие привычки"
+        help_text="введите действие привычки",
     )
-    is_nice_habit = models.BooleanField(default=False,
-                                        verbose_name="Хорошая привычка"
-                                        )
+    is_nice_habit = models.BooleanField(default=False, verbose_name="Хорошая привычка")
     reward = models.CharField(
-        max_length=255,
-        verbose_name="Награда за выполнение привычки",
-        **NULLABLE
+        max_length=255, verbose_name="Награда за выполнение привычки", **NULLABLE
     )
     associated_habit = models.ForeignKey(
-        "self", on_delete=models.CASCADE,
-        verbose_name="Связанная привычка",
-        **NULLABLE
+        "self", on_delete=models.CASCADE, verbose_name="Связанная привычка", **NULLABLE
     )
     time_spent = models.DurationField(
-        default=timedelta(seconds=120),
-        verbose_name="Время затрачиваемое на привычку"
+        default=timedelta(seconds=120), verbose_name="Время затрачиваемое на привычку"
     )
-    is_public = models.BooleanField(
-        default=False,
-        verbose_name="Публичная привычка"
-    )
+    is_public = models.BooleanField(default=False, verbose_name="Публичная привычка")
     start_date = models.DateField(
-        default=django.utils.timezone.localdate(),
-        verbose_name="Дата выполнения"
+        default=django.utils.timezone.localdate(), verbose_name="Дата выполнения"
     )
 
     def __str__(self):

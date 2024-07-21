@@ -4,6 +4,8 @@ from users.models import User
 
 
 class Command(BaseCommand):
+    """Кастомый команда создания администратора"""
+
     def handle(self, *args, **options):
         user = User.objects.create(email="admin@admin.ru")
         user.is_staff = True
